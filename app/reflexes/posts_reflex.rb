@@ -3,6 +3,8 @@
 class PostsReflex < ApplicationReflex
   include CableReady::Broadcaster
 
+  # Let's figure out how it accesses Models!
+
   def repost
     post = Post.find(element.dataset[:id])
     post.increment! :reposts_count
