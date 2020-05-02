@@ -7,13 +7,15 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.create(post_params)
-    cable_ready["timeline"].insert_adjacent_html(
-      selector: "#timeline",
-      position: "afterbegin",
-      html: render_to_string(partial: "post", locals: {post: post})
-    )
-    cable_ready.broadcast
+    post = Post.new(post_params)
+    if post.update(user: current_user) && post.save!
+      cable_ready["timeline"].insert_adjacent_html(
+        selector: "#timeline",
+        position: "afterbegin",
+        html: render_to_string(partial: "post", locals: {post: post})
+      )
+      cable_ready.broadcast
+    end
     redirect_to posts_path
   end
 
