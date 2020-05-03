@@ -19,15 +19,15 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
+require 'rails_helper'
 
-one:
-  username: MyString
-  body: MyString
-  likes_count: 1
-  reposts_count: 1
 
-two:
-  username: MyString
-  body: MyString
-  likes_count: 1
-  reposts_count: 1
+describe Post, type: :model do
+  it "has a valid factory" do
+    expect(build(:post)).to be_valid
+  end
+
+  # Lazily loaded to ensure it's only used when it's needed
+  # RSpec tip: Try to avoid @instance_variables if possible. They're slow.
+  let(:factory_instance) { build(:post) }
+end
