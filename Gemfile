@@ -31,9 +31,16 @@ gem 'devise'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+# Test gems
+gem "rspec", "~> 3.9"
+gem "rspec-rails", "~> 4.0"
+gem "factory_bot_rails", "~> 5.2"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # For documentations
+  gem "annotate", "~> 3.1"
 end
 
 group :development do

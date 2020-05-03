@@ -28,14 +28,14 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_username              (username) UNIQUE
 #
-class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+require 'rails_helper'
 
-  #
-  # Relations
-  #
-  has_many :posts
+describe User, type: :model do
+  it "has a valid factory" do
+    expect(build(:user)).to be_valid
+  end
+
+  # Lazily loaded to ensure it's only used when it's needed
+  # RSpec tip: Try to avoid @instance_variables if possible. They're slow.
+  let(:factory_instance) { build(:user) }
 end
