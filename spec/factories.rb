@@ -5,7 +5,7 @@ FactoryBot.define do
     password { "123456" }
   end
   factory :post do
-    user { user }
+    association :user
     body { "Test Doe blog post" }
   end
 end
